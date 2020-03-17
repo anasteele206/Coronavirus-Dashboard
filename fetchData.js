@@ -54,6 +54,10 @@ exports.fetchAllData = async () => {
                 allData["USA"].regions
               ));
 
+            allData["USA"].regionTotal = utilities.calculateRegionTotal(
+              allData["USA"].regions
+            );
+
             // Sync with Overrides and write final finals.
             gatherAllOverrides(allData);
           });
@@ -80,11 +84,9 @@ const gatherAllOverrides = (allData) => {
           allData[region].regions
         ));
 
-        if(region!=="Global") {
-          allData[region].regionTotal = utilities.calculateRegionTotal(
-            data[region].regions
-          );
-        }
+        allData[region].regionTotal = utilities.calculateRegionTotal(
+          data[region].regions
+        );
     })
 
     // Sync the Global United States value with the Region value.
